@@ -14,6 +14,12 @@ pipeline {
                 }
             }
         }
+
+        stage('Dependency-Check') {
+            steps {
+                dependencyCheck additionalArguments: '--format XML', odcInstallation: 'Dependency-Check' // The name given in Global Tool Configuration
+            }
+        }
         
         stage('Package') {
             steps {
@@ -27,11 +33,6 @@ pipeline {
             }
         }
         
-        stage('Dependency-Check') {
-            steps {
-                dependencyCheck additionalArguments: '--format XML', odcInstallation: 'Dependency-Check' // The name given in Global Tool Configuration
-            }
-        }
         
         stage('SonarQube Analysis') {
             steps {
