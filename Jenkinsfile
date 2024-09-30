@@ -14,6 +14,14 @@ pipeline {
                 }
             }
         }
+    stage('Update NVD Database') {
+            steps {
+               script {
+            // For Mac/Linux
+               sh "${tool 'Dependency-Check'}/bin/dependency-check.sh --updateonly"
+        }
+    }
+}
 
         stage('Dependency-Check') {
             steps {
